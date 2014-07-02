@@ -1,0 +1,645 @@
+Created by PLY version 3.5 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> main
+Rule 1     main -> COREDICT SEPARATOR ORENAME TARGET ingredientlist
+Rule 2     main -> CSHAPELESSORE SEPARATOR ingredientlist TARGET ingredient
+Rule 3     main -> CSHAPELESS SEPARATOR ingredientlist TARGET ingredient
+Rule 4     main -> CSHAPED SEPARATOR recipesize ingredientlist TARGET ingredient
+Rule 5     main -> CSHAPEDORE SEPARATOR recipesize ingredientlist TARGET ingredient
+Rule 6     main -> CITEM SEPARATOR ITEMID ITEMDESCRIPTION
+Rule 7     main -> CFURNACE SEPARATOR ingredient TARGET ingredient
+Rule 8     main -> CFLUID SEPARATOR ORENAME TARGET fluid fluid booleanst ITEMDESCRIPTION
+Rule 9     booleanst -> LPAREN BOOLEAN RPAREN
+Rule 10    fluid -> LPAREN ITEMID RPAREN
+Rule 11    ingredientlist -> ingredient
+Rule 12    ingredientlist -> ingredientlist ingredient
+Rule 13    ingredient -> LPAREN ITEMID AMOUNT RPAREN
+Rule 14    ingredient -> LPAREN NONE RPAREN
+Rule 15    ingredient -> LPAREN ORENAME AMOUNT RPAREN
+Rule 16    recipesize -> LPAREN SIZE RPAREN
+
+Terminals, with rules where they appear
+
+AMOUNT               : 13 15
+BOOLEAN              : 9
+CFLUID               : 8
+CFURNACE             : 7
+CITEM                : 6
+COREDICT             : 1
+CSHAPED              : 4
+CSHAPEDORE           : 5
+CSHAPELESS           : 3
+CSHAPELESSORE        : 2
+ITEMDESCRIPTION      : 6 8
+ITEMID               : 6 10 13
+LPAREN               : 9 10 13 14 15 16
+NONE                 : 14
+ORENAME              : 1 8 15
+RPAREN               : 9 10 13 14 15 16
+SEPARATOR            : 1 2 3 4 5 6 7 8
+SIZE                 : 16
+TARGET               : 1 2 3 4 5 7 8
+error                : 
+
+Nonterminals, with rules where they appear
+
+booleanst            : 8
+fluid                : 8 8
+ingredient           : 2 3 4 5 7 7 11 12
+ingredientlist       : 1 2 3 4 5 12
+main                 : 0
+recipesize           : 4 5
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . main
+    (1) main -> . COREDICT SEPARATOR ORENAME TARGET ingredientlist
+    (2) main -> . CSHAPELESSORE SEPARATOR ingredientlist TARGET ingredient
+    (3) main -> . CSHAPELESS SEPARATOR ingredientlist TARGET ingredient
+    (4) main -> . CSHAPED SEPARATOR recipesize ingredientlist TARGET ingredient
+    (5) main -> . CSHAPEDORE SEPARATOR recipesize ingredientlist TARGET ingredient
+    (6) main -> . CITEM SEPARATOR ITEMID ITEMDESCRIPTION
+    (7) main -> . CFURNACE SEPARATOR ingredient TARGET ingredient
+    (8) main -> . CFLUID SEPARATOR ORENAME TARGET fluid fluid booleanst ITEMDESCRIPTION
+
+    COREDICT        shift and go to state 7
+    CSHAPELESSORE   shift and go to state 8
+    CSHAPELESS      shift and go to state 3
+    CSHAPED         shift and go to state 9
+    CSHAPEDORE      shift and go to state 1
+    CITEM           shift and go to state 5
+    CFURNACE        shift and go to state 6
+    CFLUID          shift and go to state 4
+
+    main                           shift and go to state 2
+
+state 1
+
+    (5) main -> CSHAPEDORE . SEPARATOR recipesize ingredientlist TARGET ingredient
+
+    SEPARATOR       shift and go to state 10
+
+
+state 2
+
+    (0) S' -> main .
+
+
+
+state 3
+
+    (3) main -> CSHAPELESS . SEPARATOR ingredientlist TARGET ingredient
+
+    SEPARATOR       shift and go to state 11
+
+
+state 4
+
+    (8) main -> CFLUID . SEPARATOR ORENAME TARGET fluid fluid booleanst ITEMDESCRIPTION
+
+    SEPARATOR       shift and go to state 12
+
+
+state 5
+
+    (6) main -> CITEM . SEPARATOR ITEMID ITEMDESCRIPTION
+
+    SEPARATOR       shift and go to state 13
+
+
+state 6
+
+    (7) main -> CFURNACE . SEPARATOR ingredient TARGET ingredient
+
+    SEPARATOR       shift and go to state 14
+
+
+state 7
+
+    (1) main -> COREDICT . SEPARATOR ORENAME TARGET ingredientlist
+
+    SEPARATOR       shift and go to state 15
+
+
+state 8
+
+    (2) main -> CSHAPELESSORE . SEPARATOR ingredientlist TARGET ingredient
+
+    SEPARATOR       shift and go to state 16
+
+
+state 9
+
+    (4) main -> CSHAPED . SEPARATOR recipesize ingredientlist TARGET ingredient
+
+    SEPARATOR       shift and go to state 17
+
+
+state 10
+
+    (5) main -> CSHAPEDORE SEPARATOR . recipesize ingredientlist TARGET ingredient
+    (16) recipesize -> . LPAREN SIZE RPAREN
+
+    LPAREN          shift and go to state 18
+
+    recipesize                     shift and go to state 19
+
+state 11
+
+    (3) main -> CSHAPELESS SEPARATOR . ingredientlist TARGET ingredient
+    (11) ingredientlist -> . ingredient
+    (12) ingredientlist -> . ingredientlist ingredient
+    (13) ingredient -> . LPAREN ITEMID AMOUNT RPAREN
+    (14) ingredient -> . LPAREN NONE RPAREN
+    (15) ingredient -> . LPAREN ORENAME AMOUNT RPAREN
+
+    LPAREN          shift and go to state 21
+
+    ingredientlist                 shift and go to state 20
+    ingredient                     shift and go to state 22
+
+state 12
+
+    (8) main -> CFLUID SEPARATOR . ORENAME TARGET fluid fluid booleanst ITEMDESCRIPTION
+
+    ORENAME         shift and go to state 23
+
+
+state 13
+
+    (6) main -> CITEM SEPARATOR . ITEMID ITEMDESCRIPTION
+
+    ITEMID          shift and go to state 24
+
+
+state 14
+
+    (7) main -> CFURNACE SEPARATOR . ingredient TARGET ingredient
+    (13) ingredient -> . LPAREN ITEMID AMOUNT RPAREN
+    (14) ingredient -> . LPAREN NONE RPAREN
+    (15) ingredient -> . LPAREN ORENAME AMOUNT RPAREN
+
+    LPAREN          shift and go to state 21
+
+    ingredient                     shift and go to state 25
+
+state 15
+
+    (1) main -> COREDICT SEPARATOR . ORENAME TARGET ingredientlist
+
+    ORENAME         shift and go to state 26
+
+
+state 16
+
+    (2) main -> CSHAPELESSORE SEPARATOR . ingredientlist TARGET ingredient
+    (11) ingredientlist -> . ingredient
+    (12) ingredientlist -> . ingredientlist ingredient
+    (13) ingredient -> . LPAREN ITEMID AMOUNT RPAREN
+    (14) ingredient -> . LPAREN NONE RPAREN
+    (15) ingredient -> . LPAREN ORENAME AMOUNT RPAREN
+
+    LPAREN          shift and go to state 21
+
+    ingredientlist                 shift and go to state 27
+    ingredient                     shift and go to state 22
+
+state 17
+
+    (4) main -> CSHAPED SEPARATOR . recipesize ingredientlist TARGET ingredient
+    (16) recipesize -> . LPAREN SIZE RPAREN
+
+    LPAREN          shift and go to state 18
+
+    recipesize                     shift and go to state 28
+
+state 18
+
+    (16) recipesize -> LPAREN . SIZE RPAREN
+
+    SIZE            shift and go to state 29
+
+
+state 19
+
+    (5) main -> CSHAPEDORE SEPARATOR recipesize . ingredientlist TARGET ingredient
+    (11) ingredientlist -> . ingredient
+    (12) ingredientlist -> . ingredientlist ingredient
+    (13) ingredient -> . LPAREN ITEMID AMOUNT RPAREN
+    (14) ingredient -> . LPAREN NONE RPAREN
+    (15) ingredient -> . LPAREN ORENAME AMOUNT RPAREN
+
+    LPAREN          shift and go to state 21
+
+    ingredientlist                 shift and go to state 30
+    ingredient                     shift and go to state 22
+
+state 20
+
+    (3) main -> CSHAPELESS SEPARATOR ingredientlist . TARGET ingredient
+    (12) ingredientlist -> ingredientlist . ingredient
+    (13) ingredient -> . LPAREN ITEMID AMOUNT RPAREN
+    (14) ingredient -> . LPAREN NONE RPAREN
+    (15) ingredient -> . LPAREN ORENAME AMOUNT RPAREN
+
+    TARGET          shift and go to state 31
+    LPAREN          shift and go to state 21
+
+    ingredient                     shift and go to state 32
+
+state 21
+
+    (13) ingredient -> LPAREN . ITEMID AMOUNT RPAREN
+    (14) ingredient -> LPAREN . NONE RPAREN
+    (15) ingredient -> LPAREN . ORENAME AMOUNT RPAREN
+
+    ITEMID          shift and go to state 34
+    NONE            shift and go to state 33
+    ORENAME         shift and go to state 35
+
+
+state 22
+
+    (11) ingredientlist -> ingredient .
+
+    TARGET          reduce using rule 11 (ingredientlist -> ingredient .)
+    LPAREN          reduce using rule 11 (ingredientlist -> ingredient .)
+    $end            reduce using rule 11 (ingredientlist -> ingredient .)
+
+
+state 23
+
+    (8) main -> CFLUID SEPARATOR ORENAME . TARGET fluid fluid booleanst ITEMDESCRIPTION
+
+    TARGET          shift and go to state 36
+
+
+state 24
+
+    (6) main -> CITEM SEPARATOR ITEMID . ITEMDESCRIPTION
+
+    ITEMDESCRIPTION shift and go to state 37
+
+
+state 25
+
+    (7) main -> CFURNACE SEPARATOR ingredient . TARGET ingredient
+
+    TARGET          shift and go to state 38
+
+
+state 26
+
+    (1) main -> COREDICT SEPARATOR ORENAME . TARGET ingredientlist
+
+    TARGET          shift and go to state 39
+
+
+state 27
+
+    (2) main -> CSHAPELESSORE SEPARATOR ingredientlist . TARGET ingredient
+    (12) ingredientlist -> ingredientlist . ingredient
+    (13) ingredient -> . LPAREN ITEMID AMOUNT RPAREN
+    (14) ingredient -> . LPAREN NONE RPAREN
+    (15) ingredient -> . LPAREN ORENAME AMOUNT RPAREN
+
+    TARGET          shift and go to state 40
+    LPAREN          shift and go to state 21
+
+    ingredient                     shift and go to state 32
+
+state 28
+
+    (4) main -> CSHAPED SEPARATOR recipesize . ingredientlist TARGET ingredient
+    (11) ingredientlist -> . ingredient
+    (12) ingredientlist -> . ingredientlist ingredient
+    (13) ingredient -> . LPAREN ITEMID AMOUNT RPAREN
+    (14) ingredient -> . LPAREN NONE RPAREN
+    (15) ingredient -> . LPAREN ORENAME AMOUNT RPAREN
+
+    LPAREN          shift and go to state 21
+
+    ingredientlist                 shift and go to state 41
+    ingredient                     shift and go to state 22
+
+state 29
+
+    (16) recipesize -> LPAREN SIZE . RPAREN
+
+    RPAREN          shift and go to state 42
+
+
+state 30
+
+    (5) main -> CSHAPEDORE SEPARATOR recipesize ingredientlist . TARGET ingredient
+    (12) ingredientlist -> ingredientlist . ingredient
+    (13) ingredient -> . LPAREN ITEMID AMOUNT RPAREN
+    (14) ingredient -> . LPAREN NONE RPAREN
+    (15) ingredient -> . LPAREN ORENAME AMOUNT RPAREN
+
+    TARGET          shift and go to state 43
+    LPAREN          shift and go to state 21
+
+    ingredient                     shift and go to state 32
+
+state 31
+
+    (3) main -> CSHAPELESS SEPARATOR ingredientlist TARGET . ingredient
+    (13) ingredient -> . LPAREN ITEMID AMOUNT RPAREN
+    (14) ingredient -> . LPAREN NONE RPAREN
+    (15) ingredient -> . LPAREN ORENAME AMOUNT RPAREN
+
+    LPAREN          shift and go to state 21
+
+    ingredient                     shift and go to state 44
+
+state 32
+
+    (12) ingredientlist -> ingredientlist ingredient .
+
+    TARGET          reduce using rule 12 (ingredientlist -> ingredientlist ingredient .)
+    LPAREN          reduce using rule 12 (ingredientlist -> ingredientlist ingredient .)
+    $end            reduce using rule 12 (ingredientlist -> ingredientlist ingredient .)
+
+
+state 33
+
+    (14) ingredient -> LPAREN NONE . RPAREN
+
+    RPAREN          shift and go to state 45
+
+
+state 34
+
+    (13) ingredient -> LPAREN ITEMID . AMOUNT RPAREN
+
+    AMOUNT          shift and go to state 46
+
+
+state 35
+
+    (15) ingredient -> LPAREN ORENAME . AMOUNT RPAREN
+
+    AMOUNT          shift and go to state 47
+
+
+state 36
+
+    (8) main -> CFLUID SEPARATOR ORENAME TARGET . fluid fluid booleanst ITEMDESCRIPTION
+    (10) fluid -> . LPAREN ITEMID RPAREN
+
+    LPAREN          shift and go to state 48
+
+    fluid                          shift and go to state 49
+
+state 37
+
+    (6) main -> CITEM SEPARATOR ITEMID ITEMDESCRIPTION .
+
+    $end            reduce using rule 6 (main -> CITEM SEPARATOR ITEMID ITEMDESCRIPTION .)
+
+
+state 38
+
+    (7) main -> CFURNACE SEPARATOR ingredient TARGET . ingredient
+    (13) ingredient -> . LPAREN ITEMID AMOUNT RPAREN
+    (14) ingredient -> . LPAREN NONE RPAREN
+    (15) ingredient -> . LPAREN ORENAME AMOUNT RPAREN
+
+    LPAREN          shift and go to state 21
+
+    ingredient                     shift and go to state 50
+
+state 39
+
+    (1) main -> COREDICT SEPARATOR ORENAME TARGET . ingredientlist
+    (11) ingredientlist -> . ingredient
+    (12) ingredientlist -> . ingredientlist ingredient
+    (13) ingredient -> . LPAREN ITEMID AMOUNT RPAREN
+    (14) ingredient -> . LPAREN NONE RPAREN
+    (15) ingredient -> . LPAREN ORENAME AMOUNT RPAREN
+
+    LPAREN          shift and go to state 21
+
+    ingredientlist                 shift and go to state 51
+    ingredient                     shift and go to state 22
+
+state 40
+
+    (2) main -> CSHAPELESSORE SEPARATOR ingredientlist TARGET . ingredient
+    (13) ingredient -> . LPAREN ITEMID AMOUNT RPAREN
+    (14) ingredient -> . LPAREN NONE RPAREN
+    (15) ingredient -> . LPAREN ORENAME AMOUNT RPAREN
+
+    LPAREN          shift and go to state 21
+
+    ingredient                     shift and go to state 52
+
+state 41
+
+    (4) main -> CSHAPED SEPARATOR recipesize ingredientlist . TARGET ingredient
+    (12) ingredientlist -> ingredientlist . ingredient
+    (13) ingredient -> . LPAREN ITEMID AMOUNT RPAREN
+    (14) ingredient -> . LPAREN NONE RPAREN
+    (15) ingredient -> . LPAREN ORENAME AMOUNT RPAREN
+
+    TARGET          shift and go to state 53
+    LPAREN          shift and go to state 21
+
+    ingredient                     shift and go to state 32
+
+state 42
+
+    (16) recipesize -> LPAREN SIZE RPAREN .
+
+    LPAREN          reduce using rule 16 (recipesize -> LPAREN SIZE RPAREN .)
+
+
+state 43
+
+    (5) main -> CSHAPEDORE SEPARATOR recipesize ingredientlist TARGET . ingredient
+    (13) ingredient -> . LPAREN ITEMID AMOUNT RPAREN
+    (14) ingredient -> . LPAREN NONE RPAREN
+    (15) ingredient -> . LPAREN ORENAME AMOUNT RPAREN
+
+    LPAREN          shift and go to state 21
+
+    ingredient                     shift and go to state 54
+
+state 44
+
+    (3) main -> CSHAPELESS SEPARATOR ingredientlist TARGET ingredient .
+
+    $end            reduce using rule 3 (main -> CSHAPELESS SEPARATOR ingredientlist TARGET ingredient .)
+
+
+state 45
+
+    (14) ingredient -> LPAREN NONE RPAREN .
+
+    LPAREN          reduce using rule 14 (ingredient -> LPAREN NONE RPAREN .)
+    $end            reduce using rule 14 (ingredient -> LPAREN NONE RPAREN .)
+    TARGET          reduce using rule 14 (ingredient -> LPAREN NONE RPAREN .)
+
+
+state 46
+
+    (13) ingredient -> LPAREN ITEMID AMOUNT . RPAREN
+
+    RPAREN          shift and go to state 55
+
+
+state 47
+
+    (15) ingredient -> LPAREN ORENAME AMOUNT . RPAREN
+
+    RPAREN          shift and go to state 56
+
+
+state 48
+
+    (10) fluid -> LPAREN . ITEMID RPAREN
+
+    ITEMID          shift and go to state 57
+
+
+state 49
+
+    (8) main -> CFLUID SEPARATOR ORENAME TARGET fluid . fluid booleanst ITEMDESCRIPTION
+    (10) fluid -> . LPAREN ITEMID RPAREN
+
+    LPAREN          shift and go to state 48
+
+    fluid                          shift and go to state 58
+
+state 50
+
+    (7) main -> CFURNACE SEPARATOR ingredient TARGET ingredient .
+
+    $end            reduce using rule 7 (main -> CFURNACE SEPARATOR ingredient TARGET ingredient .)
+
+
+state 51
+
+    (1) main -> COREDICT SEPARATOR ORENAME TARGET ingredientlist .
+    (12) ingredientlist -> ingredientlist . ingredient
+    (13) ingredient -> . LPAREN ITEMID AMOUNT RPAREN
+    (14) ingredient -> . LPAREN NONE RPAREN
+    (15) ingredient -> . LPAREN ORENAME AMOUNT RPAREN
+
+    $end            reduce using rule 1 (main -> COREDICT SEPARATOR ORENAME TARGET ingredientlist .)
+    LPAREN          shift and go to state 21
+
+    ingredient                     shift and go to state 32
+
+state 52
+
+    (2) main -> CSHAPELESSORE SEPARATOR ingredientlist TARGET ingredient .
+
+    $end            reduce using rule 2 (main -> CSHAPELESSORE SEPARATOR ingredientlist TARGET ingredient .)
+
+
+state 53
+
+    (4) main -> CSHAPED SEPARATOR recipesize ingredientlist TARGET . ingredient
+    (13) ingredient -> . LPAREN ITEMID AMOUNT RPAREN
+    (14) ingredient -> . LPAREN NONE RPAREN
+    (15) ingredient -> . LPAREN ORENAME AMOUNT RPAREN
+
+    LPAREN          shift and go to state 21
+
+    ingredient                     shift and go to state 59
+
+state 54
+
+    (5) main -> CSHAPEDORE SEPARATOR recipesize ingredientlist TARGET ingredient .
+
+    $end            reduce using rule 5 (main -> CSHAPEDORE SEPARATOR recipesize ingredientlist TARGET ingredient .)
+
+
+state 55
+
+    (13) ingredient -> LPAREN ITEMID AMOUNT RPAREN .
+
+    LPAREN          reduce using rule 13 (ingredient -> LPAREN ITEMID AMOUNT RPAREN .)
+    $end            reduce using rule 13 (ingredient -> LPAREN ITEMID AMOUNT RPAREN .)
+    TARGET          reduce using rule 13 (ingredient -> LPAREN ITEMID AMOUNT RPAREN .)
+
+
+state 56
+
+    (15) ingredient -> LPAREN ORENAME AMOUNT RPAREN .
+
+    LPAREN          reduce using rule 15 (ingredient -> LPAREN ORENAME AMOUNT RPAREN .)
+    $end            reduce using rule 15 (ingredient -> LPAREN ORENAME AMOUNT RPAREN .)
+    TARGET          reduce using rule 15 (ingredient -> LPAREN ORENAME AMOUNT RPAREN .)
+
+
+state 57
+
+    (10) fluid -> LPAREN ITEMID . RPAREN
+
+    RPAREN          shift and go to state 60
+
+
+state 58
+
+    (8) main -> CFLUID SEPARATOR ORENAME TARGET fluid fluid . booleanst ITEMDESCRIPTION
+    (9) booleanst -> . LPAREN BOOLEAN RPAREN
+
+    LPAREN          shift and go to state 62
+
+    booleanst                      shift and go to state 61
+
+state 59
+
+    (4) main -> CSHAPED SEPARATOR recipesize ingredientlist TARGET ingredient .
+
+    $end            reduce using rule 4 (main -> CSHAPED SEPARATOR recipesize ingredientlist TARGET ingredient .)
+
+
+state 60
+
+    (10) fluid -> LPAREN ITEMID RPAREN .
+
+    LPAREN          reduce using rule 10 (fluid -> LPAREN ITEMID RPAREN .)
+
+
+state 61
+
+    (8) main -> CFLUID SEPARATOR ORENAME TARGET fluid fluid booleanst . ITEMDESCRIPTION
+
+    ITEMDESCRIPTION shift and go to state 63
+
+
+state 62
+
+    (9) booleanst -> LPAREN . BOOLEAN RPAREN
+
+    BOOLEAN         shift and go to state 64
+
+
+state 63
+
+    (8) main -> CFLUID SEPARATOR ORENAME TARGET fluid fluid booleanst ITEMDESCRIPTION .
+
+    $end            reduce using rule 8 (main -> CFLUID SEPARATOR ORENAME TARGET fluid fluid booleanst ITEMDESCRIPTION .)
+
+
+state 64
+
+    (9) booleanst -> LPAREN BOOLEAN . RPAREN
+
+    RPAREN          shift and go to state 65
+
+
+state 65
+
+    (9) booleanst -> LPAREN BOOLEAN RPAREN .
+
+    ITEMDESCRIPTION reduce using rule 9 (booleanst -> LPAREN BOOLEAN RPAREN .)
+
